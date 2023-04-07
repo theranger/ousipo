@@ -1,0 +1,13 @@
+body {
+	margin: 0;
+	grid-gap: 0;
+	min-width: 40rem;
+}
+
+aside {
+	display: none;
+}
+
+section {
+	display: none;
+}

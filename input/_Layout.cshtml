@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="et">
+
+<head>
+	<meta charset="utf-8" />
+	<title>Sleepwalking</title>
+	<meta name="description" content="Circle of Life" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" type="text/css" href="@Context.GetLink("/scss/main.css")" />
+	<link rel="stylesheet" media="screen and (max-width: 900px)" href="@Context.GetLink("/scss/mobile.css")" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Literata:wght@400;600&display=swap" rel="stylesheet">
+	<link rel="alternate" type="application/rss+xml" title="Sleepwalking" href="@Context.GetLink("feed.rss")" />
+	<link rel="alternate" type="application/atom+xml" title="Sleepwalking" href="@Context.GetLink("feed.atom")" />
+</head>
+
+<body>
+<aside>
+	<p class="title"><a href="@Context.GetLink("/")">Sleepwalking<br/><em>Circle of Life</em></a></p>
+	<ul class="links">
+		<li><a href="@Context.GetLink("feed.rss")">Feed</a></li>
+		<li><a href="https://insomnia.risk.ee" target="_blank">Insomnia</a></li>
+	</ul>
+</aside>
+<main>
+	@RenderBody()
+</main>
+<section>
+	<p class="title">Life</p>
+	<p>Living your life is like doing a magic: everyone else is amazed but only you know how dirty job it is.</p>
+</section>
+<footer>
+	<p>Designed by <a href="https://andreamignolo.com/" target="_blank">pnts</a> <br />Powered by <a href="https://statiq.dev" target="_blank">Statiq</a></p>
+</footer>
+</body>
+
+</html>

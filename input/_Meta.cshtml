@@ -1,0 +1,14 @@
+@{ 
+	var date = @Model.GetDateTime(WebKeys.Published).ToString("yyyy/MM");
+	var doc = OutputPages[$"{date}/index.html"].FirstOrDefault();
+}
+
+<em>
+	<a href="@Context.GetLink(doc)">
+		<time>@Model.GetDateTime(WebKeys.Published).ToString("dd. MMMM yyyy", new System.Globalization.CultureInfo("et_EE"))</time>
+	</a>
+	§
+	<a href="@Context.GetLink(Model)">Permalink</a>
+	§
+	@await Html.PartialAsync("_Tags.cshtml", Model)
+</em>

@@ -1,0 +1,17 @@
+@foreach (var post in Model.GetChildren()) {
+	var excerpt = post.GetString(Keys.Excerpt);
+	excerpt = excerpt.RemoveStart("<p>").RemoveEnd("</p>");
+	var words = excerpt.Split().Take(50);
+	excerpt = string.Join(" ", words) + " [...]";
+
+
+	<h2>@Html.DocumentLink(post)</h2>
+
+	<nav class="meta">
+		@await Html.PartialAsync("_Meta.cshtml", post)
+	</nav>
+
+	<article class="list">
+		@Html.DocumentLink(post, excerpt)
+	</article>
+}

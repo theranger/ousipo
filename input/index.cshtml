@@ -1,0 +1,13 @@
+ArchiveSources: => GetString("PostSources")
+ArchiveOrderKey: Published
+ArchiveOrderDescending: true
+ArchivePageSize: 1
+IncludeInSitemap: false
+---
+
+@{
+	Layout = "_Single.cshtml";
+	ViewData.Model = Document.GetChildren().First();
+}
+
+@Html.Raw(await ViewData.Model.ContentProvider.GetTextReader().ReadToEndAsync())

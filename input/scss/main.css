@@ -1,0 +1,133 @@
+:root {
+	--darkfg: #000;
+	--lightfg: #a0a0a0;
+	--empfg: #fff;
+	--lightbg: #e7e7e7;
+	--empbg: #5b9ff8;
+}
+
+body {
+	margin: 5vh 10vw 5vh 10vw;
+	display: grid;
+	grid-gap: 5vw;
+	grid-template-columns: [left-start] 15vw [main-start] auto [right-start] 15vw [right-end];
+	grid-template-rows: [header-start] 20px [main-start] auto [footer-start] auto [footer-end];
+	font-family: "Literata", serif;
+}
+
+section {
+	grid-column: right-start / span 1;
+	grid-row: main-start / span 1;
+}
+
+aside {
+	grid-column: left-start / span 1;
+	grid-row: main-start / span 1;
+	margin-top: 30vh;
+}
+
+
+main {
+	grid-column: main-start / span 1;
+	grid-row: main-start / span 1;
+	line-height: 2rem;
+}
+
+footer {
+	grid-column: left-start / right-end;
+	grid-row: footer-start / span 1;
+	border-top: 1px dotted var(--lightfg);
+	display: flex;
+	justify-content: flex-end;
+}
+
+footer a, article a {
+	color: var(--lightfg)
+}
+
+nav.links {
+	display: flex;
+	justify-content: space-between;
+}
+
+nav.links p a {
+	background: var(--lightbg);
+	padding: 0.2rem 0.5rem;
+	border-radius: 0.25rem;
+	font-size: 0.75em;
+}
+
+nav.links p a:hover {
+	background: var(--empbg);
+	color: var(--empfg);
+}
+
+article:first-line {
+	text-transform: uppercase;
+}
+
+article:first-letter {
+	font-size: 5em;
+	float: left;
+	margin: 1rem 0.5rem 1rem 0;
+}
+
+p.title {
+	font-weight: bold;
+	font-variant: small-caps;
+	font-style: normal;
+	font-size: 1.2em;
+}
+
+p.title em {
+	font-weight: normal;
+	font-size: 0.85em;
+	font-variant: normal;
+}
+
+a {
+	color: var(--darkfg);
+	text-decoration: none;
+}
+
+a:hover {
+	color: var(--empbg);
+}
+
+h1 {
+	border-bottom: 1px dotted var(--lightfg);
+	padding-bottom: 0.5rem;
+	font-weight: normal;
+	margin: 0;
+}
+
+h2 {
+	margin: 2rem 0 0 0;
+}
+
+nav.meta {
+	font-size: 0.75em;
+	margin-bottom: 1.5rem;
+}
+
+ul.links {
+	padding: 0;
+}
+
+ul.links li {
+	list-style: none;
+	font-variant: small-caps;
+	border-bottom: 1px dotted var(--lightfg);
+	padding: 0.25rem;
+}
+
+footer p {
+	border-left: 1px dotted var(--lightfg);
+	margin: 0;
+	padding: 1rem;
+	font-size: 0.75em;
+}
+
+article.list a {
+	color: var(--darkfg)
+}

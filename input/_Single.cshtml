@@ -1,0 +1,27 @@
+@{
+	Layout = "_Layout.cshtml";
+}
+
+<h1>@Model.GetTitle()</h1>
+
+<nav class="meta">
+	@await Html.PartialAsync("_Meta.cshtml", Model)
+</nav>
+
+<article>
+	@RenderBody()
+</article>
+
+<nav class="links">
+	@{
+        var navItem = new NavItem { IsPost = true };
+        var outputs = Context.OutputPages.OrderBy(x => x.GetDateTime(WebKeys.Published)).WhereContainsKey("MarkdownDocument");
+        for (var i = 0; i < outputs.Count; i++) {
+        	navItem.Previous = i > 0 ? outputs[i - 1] : null;
+        	navItem.Next = i < outputs.Count - 1 ? outputs[i + 1] : null;
+        	if (outputs[i].Source == Model.Source) break;
+        }
+        
+        await Html.RenderPartialAsync("_Footer.cshtml", navItem);
+    }
+</nav>

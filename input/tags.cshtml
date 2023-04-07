@@ -1,0 +1,37 @@
+ArchiveSources: => GetString("PostSources")
+ArchiveOrderKey: Published
+ArchiveKey: Tags
+ArchiveOrderDescending: true
+ArchivePageSize: 10
+ArchiveTitle: => System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(GetString("GroupKey"))
+ArchiveKeyComparer: => StringComparer.OrdinalIgnoreCase.ToConvertingEqualityComparer()
+ArchiveDestination: >
+  => GetInt("Index") < 2 ? $"tags/{NormalizedPath.OptimizeFileName(GetString("GroupKey"))}/index.html" : $"tags/{NormalizedPath.OptimizeFileName(GetString("GroupKey"))}/{GetInt("Index")}.html"
+IncludeInSitemap: false
+ArchiveType: tags
+---
+
+@{
+	Layout = "_Layout.cshtml";
+}
+
+<h1 class="topic">@Document.GetTitle()</h1>
+
+@if (Document.ContainsKey(Keys.GroupKey)) {
+	await Html.RenderPartialAsync("_Posts.cshtml", Document);
+}
+
+<nav class="links">
+	@if (Document.ContainsKey(Keys.GroupKey)) {
+		var navItem = new NavItem {
+			Previous = Context.Inputs.WhereContainsKey("ArchiveType").GetNext(Document),
+			Next = Context.Inputs.WhereContainsKey("ArchiveType").GetPrevious(Document),
+			Type = NavItem.ArchiveType.Tags
+		};
+
+
+		@if (navItem.Previous != null && navItem.Previous.Destination.Parent.IsNullOrEmpty) navItem.Previous = null;
+		@if (navItem.Next != null && navItem.Next.Destination.Parent.IsNullOrEmpty) navItem.Next = null;
+		await Html.RenderPartialAsync("_Footer.cshtml", navItem);
+	}
+</nav>
