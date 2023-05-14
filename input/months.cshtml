@@ -19,6 +19,11 @@ ArchiveType: months
 
 @foreach (var tag in Model.GetChildren().OrderByDescending(x => x.GetChildren().Count())) {
 	<h2><a href="@Context.GetLink(tag)">@tag.GetTitle()</a></h2>
+
+	<nav class="meta">
+		@await Html.PartialAsync("_Meta.cshtml", tag)
+	</nav>
+
 	<p>@Html.Raw(tag.GetString(Keys.Excerpt))</p>
 }
 
