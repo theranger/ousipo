@@ -2,7 +2,7 @@ ArchiveSources: => GetString("PostSources")
 ArchiveOrderKey: Published
 ArchiveKey: Tags
 ArchiveOrderDescending: true
-ArchivePageSize: 10
+ArchivePageSize: 5
 ArchiveTitle: => System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(GetString("GroupKey"))
 ArchiveKeyComparer: => StringComparer.OrdinalIgnoreCase.ToConvertingEqualityComparer()
 ArchiveDestination: >
@@ -13,25 +13,19 @@ ArchiveType: tags
 
 @{
 	Layout = "_Layout.cshtml";
+	var previous = Model.GetDocument(Keys.Previous);
+	var next = Model.GetDocument(Keys.Next);
+	var textinfo = new System.Globalization.CultureInfo("en-US", false).TextInfo;
 }
 
-<h1 class="topic">@Document.GetTitle()</h1>
+<h1>@textinfo.ToTitleCase(Document.GetTitle())</h1>
 
-@if (Document.ContainsKey(Keys.GroupKey)) {
-	await Html.RenderPartialAsync("_Posts.cshtml", Document);
+@foreach (var tag in Model.GetChildren().OrderByDescending(x => x.GetChildren().Count())) {
+	<h2><a href="@Context.GetLink(tag)">@tag.GetTitle()</a></h2>
+	<p>@Html.Raw(tag.GetString(Keys.Excerpt))</p>
 }
 
-<nav class="links">
-	@if (Document.ContainsKey(Keys.GroupKey)) {
-		var navItem = new NavItem {
-			Previous = Context.Inputs.WhereContainsKey("ArchiveType").GetNext(Document),
-			Next = Context.Inputs.WhereContainsKey("ArchiveType").GetPrevious(Document),
-			Type = NavItem.ArchiveType.Tags
-		};
-
-
-		@if (navItem.Previous != null && navItem.Previous.Destination.Parent.IsNullOrEmpty) navItem.Previous = null;
-		@if (navItem.Next != null && navItem.Next.Destination.Parent.IsNullOrEmpty) navItem.Next = null;
-		await Html.RenderPartialAsync("_Footer.cshtml", navItem);
-	}
+<nav class="pager">
+	@if(previous != null) { <a href="@previous?.GetLink()">&laquo; Previous</a> }
+	@if(next != null) { <a href="@next?.GetLink()">Next &raquo;</a> }
 </nav>

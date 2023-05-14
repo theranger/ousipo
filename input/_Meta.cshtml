@@ -1,14 +1,21 @@
 @{ 
 	var date = @Model.GetDateTime(WebKeys.Published).ToString("yyyy/MM");
-	var doc = OutputPages[$"{date}/index.html"].FirstOrDefault();
+	var dateArchive = OutputPages[$"{date}/index.html"].FirstOrDefault();
 }
 
-<em>
-	<a href="@Context.GetLink(doc)">
-		<time>@Model.GetDateTime(WebKeys.Published).ToString("dd. MMMM yyyy", new System.Globalization.CultureInfo("et_EE"))</time>
-	</a>
-	§
-	<a href="@Context.GetLink(Model)">Permalink</a>
-	§
-	@await Html.PartialAsync("_Tags.cshtml", Model)
-</em>
+<ul>
+	<li>
+		<a href="@Context.GetLink(dateArchive)">
+			<time>@Model.GetDateTime(WebKeys.Published).ToString("dd. MMMM yyyy", new System.Globalization.CultureInfo("et_EE"))</time>
+		</a>
+	</li>
+	<li><a href="@Context.GetLink(Model)">Permalink</a></li>
+
+	@foreach (var tag in Model.GetList<string>("Tags") ?? new List<string>()) {
+    	var doc = OutputPages[$"tags/{@NormalizedPath.OptimizeFileName(tag)}/index.html"].FirstOrDefault();
+    	if (doc == null) continue;
+    
+    	<li><a href="@Context.GetLink(doc)">@doc.GetTitle()</a></li>
+    }
+
+</ul>

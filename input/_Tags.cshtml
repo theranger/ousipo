@@ -1,6 +1,0 @@
-@foreach (var tag in Model.GetList<string>("Tags")) {
-	var doc = OutputPages[$"tags/{@NormalizedPath.OptimizeFileName(tag)}/index.html"].FirstOrDefault();
-	if (doc == null) continue;
-
-	<a href="@Context.GetLink(doc)">@doc.GetTitle()</a>
-}
