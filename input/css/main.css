@@ -110,6 +110,19 @@ nav.meta {
 	margin-bottom: 1.5rem;
 }
 
+nav.meta ul {
+	margin: 0;
+	padding: 0;
+}
+
+nav.meta ul li {
+	display: inline;
+}
+
+nav.meta ul li + li:before {
+	content: " § "
+}
+
 ul.links {
 	padding: 0;
 }
