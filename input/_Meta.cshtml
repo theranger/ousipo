@@ -4,13 +4,15 @@
 }
 
 <ul>
-	<li>
-		<a href="@Context.GetLink(dateArchive)">
-			<time>@Model.GetDateTime(WebKeys.Published).ToString("dd. MMMM yyyy", new System.Globalization.CultureInfo("et_EE"))</time>
-		</a>
-	</li>
+	@if(dateArchive != null) {
+		<li>
+			<a href="@Context.GetLink(dateArchive)">
+				<time>@Model.GetDateTime(WebKeys.Published).ToString("dd. MMMM yyyy", new System.Globalization.CultureInfo("et_EE"))</time>
+			</a>
+		</li>
+	}
 	<li><a href="@Context.GetLink(Model)">Permalink</a></li>
-
+	
 	@foreach (var tag in Model.GetList<string>("Tags") ?? new List<string>()) {
     	var doc = OutputPages[$"tags/{@NormalizedPath.OptimizeFileName(tag)}/index.html"].FirstOrDefault();
     	if (doc == null) continue;
