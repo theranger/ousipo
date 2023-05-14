@@ -123,6 +123,11 @@ nav.meta ul li + li:before {
 	content: " § "
 }
 
+nav.pager {
+	display: flex;
+	justify-content: space-around;
+}
+
 ul.links {
 	padding: 0;
 }
