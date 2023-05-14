@@ -24,6 +24,6 @@ IncludeInSitemap: false
 }
 
 <nav class="pager">
-	@if(previous != null) { <a href="@previous?.GetLink()">&laquo; Previous</a> }
-	@if(next != null) { <a href="@next?.GetLink()">Next &raquo;</a> }
+	@if(previous != null) { <a href="@previous?.GetLink()">&laquo; @previous?.GetChildren()[0]?.GetTitle()</a> }
+	@if(next != null) { <a href="@next?.GetLink()">@next?.GetChildren()[0]?.GetTitle() &raquo;</a> }
 </nav>
