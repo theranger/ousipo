@@ -11,8 +11,10 @@ IncludeInSitemap: false
 	var next = Model.GetDocument(Keys.Next);
 }
 
+<h1>Arhiiv #@Model.GetString(Keys.Index)</h1>
+
 @foreach (var post in Model.GetChildren()) {
-	@if(post == Model.GetChildren().First()) continue;
+	@if(previous == null && post == Model.GetChildren().First()) continue;
 
 	<h2>@Html.DocumentLink(post)</h2>
 
