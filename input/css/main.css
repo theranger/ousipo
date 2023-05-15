@@ -63,7 +63,8 @@ nav.links p a:hover {
 }
 
 article > p:first-child:first-line {
-	text-transform: uppercase;
+	font-variant: small-caps;
+	font-size: 1.2em;
 }
 
 article > p:first-child:first-letter {
