@@ -125,7 +125,7 @@ nav.meta ul li + li:before {
 
 nav.pager {
 	display: flex;
-	justify-content: space-around;
+	justify-content: space-between;
 }
 
 ul.links {
