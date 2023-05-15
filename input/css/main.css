@@ -23,7 +23,7 @@ section {
 aside {
 	grid-column: left-start / span 1;
 	grid-row: main-start / span 1;
-	margin-top: 30vh;
+	align-self: center;
 }
 
 
@@ -62,14 +62,20 @@ nav.links p a:hover {
 	color: var(--empfg);
 }
 
-article:first-line {
+article > p:first-child:first-line {
 	text-transform: uppercase;
 }
 
-article:first-letter {
+article > p:first-child:first-letter {
 	font-size: 5em;
 	float: left;
 	margin: 1rem 0.5rem 1rem 0;
+}
+
+article blockquote {
+	border-left: 0.2rem dotted var(--lightfg);
+	padding-left: 1rem;
+	margin-left: 1rem;
 }
 
 p.title {
