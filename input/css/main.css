@@ -23,7 +23,7 @@ section {
 aside {
 	grid-column: left-start / span 1;
 	grid-row: main-start / span 1;
-	align-self: center;
+	margin-top: 50%;
 }
 
 
