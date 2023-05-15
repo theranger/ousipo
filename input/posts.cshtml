@@ -1,0 +1,29 @@
+ArchiveSources: => GetString("PostSources")
+ArchiveOrderKey: Published
+ArchiveOrderDescending: true
+ArchivePageSize: 10
+IncludeInSitemap: false
+---
+
+@{
+	Layout = "_Layout.cshtml";
+	var previous = Model.GetDocument(Keys.Previous);
+	var next = Model.GetDocument(Keys.Next);
+}
+
+@foreach (var post in Model.GetChildren()) {
+	@if(post == Model.GetChildren().First()) continue;
+
+	<h2>@Html.DocumentLink(post)</h2>
+
+	<nav class="meta">
+		@await Html.PartialAsync("_Meta.cshtml", post)
+	</nav>
+
+	<p>@Html.Raw(post.GetString(Keys.Excerpt))</p>
+}
+
+<nav class="pager">
+	<a href="@($"{previous?.GetLink() ?? "/"}")">&laquo; Uuemad postitused</a>
+	@if(next != null) { <a href="@next?.GetLink()">Vanemad postitused &raquo;</a> }
+</nav>
