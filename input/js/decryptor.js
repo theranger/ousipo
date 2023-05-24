@@ -2,9 +2,9 @@ async function decrypt(key, iv, data, dst, log) {
     try {
         if (key === "") throw "Password cannot be empty.";
         
-        let hash = await window.crypto.subtle.digest("SHA-256", new TextEncoder().encode(key))
+        const hash = await window.crypto.subtle.digest("SHA-256", new TextEncoder().encode(key))
         
-        let cryptoKey = await window.crypto.subtle.importKey(
+        const cryptoKey = await window.crypto.subtle.importKey(
             "raw",
             hash,
             { name: "AES-CBC"} ,
@@ -12,7 +12,7 @@ async function decrypt(key, iv, data, dst, log) {
             ["decrypt"]
         );
 
-        let text = await window.crypto.subtle.decrypt(
+        const text = await window.crypto.subtle.decrypt(
             { name: "AES-CBC", iv: base64ToArray(iv)},
             cryptoKey,
             base64ToArray(data)
@@ -26,8 +26,8 @@ async function decrypt(key, iv, data, dst, log) {
 }
 
 function base64ToArray(data) {
-    let str = atob(data);
-    let ret = new Uint8Array(str.length);
+    const str = atob(data);
+    const ret = new Uint8Array(str.length);
     for(let i = 0; i < str.length; i++) ret[i] = str.charCodeAt(i);
     return ret;
 }
