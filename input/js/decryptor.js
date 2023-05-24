@@ -21,7 +21,7 @@ async function decrypt(key, iv, data, dst, log) {
         dst.innerHTML = new TextDecoder("utf-8").decode(text);
     }
     catch(err) {
-        log.innerHTML = err.toString() === "OperationError" ? "Password is incorrect." : err;
+        log.innerHTML = err.toString().includes("OperationError") ? "Password is incorrect." : err;
     }
 }
 
