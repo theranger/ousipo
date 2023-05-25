@@ -135,6 +135,17 @@ nav.pager {
 	justify-content: space-between;
 }
 
+nav.pager a {
+	background-color: var(--lightfg);
+	color: var(--empfg);
+	padding: 0 0.5rem;
+	border-radius: 0.5rem;
+}
+
+nav.pager a:hover {
+	background-color: var(--empbg);
+}
+
 ul.links {
 	padding: 0;
 }
