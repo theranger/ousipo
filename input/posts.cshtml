@@ -26,6 +26,6 @@ IncludeInSitemap: false
 }
 
 <nav class="pager">
-	<a href="@($"{previous?.GetLink() ?? "/"}")">&laquo; Uuemad postitused</a>
-	@if(next != null) { <a href="@next?.GetLink()">Vanemad postitused &raquo;</a> }
+	@if(next != null) { <a href="@next?.GetLink()">&laquo; Vanemad postitused</a> }
+	<a href="@($"{previous?.GetLink() ?? "/"}")">Uuemad postitused &raquo;</a>
 </nav>

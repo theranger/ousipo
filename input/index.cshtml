@@ -20,7 +20,7 @@ IncludeInSitemap: false
 </article>
 
 <nav class="pager">
+	@if(Model.GetChildren().Count > 1) { <a href="/posts">&laquo; Vanemad postitused</a> }
 	<span></span>
-	@if(Model.GetChildren().Count > 1) { <a href="/posts">Vanemad postitused &raquo;</a> }
 </nav>
 
