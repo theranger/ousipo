@@ -167,3 +167,7 @@ footer p {
 article.list a {
 	color: var(--darkfg)
 }
+
+article img {
+	width: 100%;
+}
