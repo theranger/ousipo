@@ -15,3 +15,7 @@ aside ul {
 section {
 	display: none;
 }
+
+footer {
+	margin-top: 2rem;
+}
